@@ -4,7 +4,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 
 const {setStatics} = require('./utils/statics');
-
+const adminRoutes = require("./routes/admin");
 const app = express();
 //Custom Middlewares
 app.use(bodyparser.urlencoded({extended:false}));
@@ -21,6 +21,7 @@ setStatics(app);
 
 
 //Routes
+app.use("/admin",adminRoutes);
 app.get("/",(req,res) => {
     res.render("index",{pageTitle : "کار های روزمره"});
 });
