@@ -13,6 +13,7 @@ class Todo {
     save(callback){
         fs.writeFile(filepath,JSON.stringify(this),(err) => {
             if(err) callback(arr);
+           else return callback([]);
         });
     };
 };
