@@ -39,7 +39,22 @@ class Todo {
             callback(err);
         });   
     });
-   }
+   };
+
+   static setCompleteTodo(id,callback){
+    fs.readFile(filepath,(err,fileContent) => {
+        const todos = JSON.parse(fileContent);
+        const todoIndex = todos.findIndex((t) => t.id=id);
+
+        const todo = todos[todoIndex];
+        todo.completed = true;
+        todos[todoIndex] = todo;
+
+        fs.writeFile(filepath,JSON.stringify(todos),(err) => {
+            callback(err);
+        });
+    });
+   };
 };
 
 module.exports=Todo;
