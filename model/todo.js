@@ -11,11 +11,25 @@ class Todo {
     };
 
     save(callback){
-        fs.writeFile(filepath,JSON.stringify(this),(err) => {
-            if(err) callback(arr);
-           else return callback([]);
+        fs.readFile(filepath,(err,fileContent) => {
+           // if(err) return [];
+            const todos = JSON.parse(fileContent);
+            todos.push(this);
+
+            fs.writeFile(filepath,JSON.stringify(todos),(err) => {
+                if(err) callback(err);
+               else return callback([]);
+            });
         });
     };
+
+    static fetchAll(callback){
+        fs.readFile(filepath,(err,fileContent) => {
+            if(err) return [];
+            const todos = JSON.parse(fileContent);
+            callback(todos);
+        });
+   };
 };
 
 module.exports=Todo;
