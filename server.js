@@ -5,6 +5,8 @@ const bodyparser = require('body-parser');
 
 const {setStatics} = require('./utils/statics');
 const adminRoutes = require("./routes/admin");
+const indexRoutes = require("./routes/index");
+
 const app = express();
 //Custom Middlewares
 app.use(bodyparser.urlencoded({extended:false}));
@@ -21,10 +23,8 @@ setStatics(app);
 
 
 //Routes
+app.use(indexRoutes);
 app.use("/admin",adminRoutes);
-app.get("/",(req,res) => {
-    res.render("index",{pageTitle : "کار های روزمره"});
-});
 //End Of Routes
 
 app.listen(3000,() => {
