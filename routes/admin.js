@@ -8,4 +8,6 @@ router.post("/add-todo",adminController.addTodo);
 
 router.get("/delete-todo/:id",adminController.deleteTodo);
 
+router.get("/completed-todo",adminController.completedTodo);
+
 module.exports = router;
