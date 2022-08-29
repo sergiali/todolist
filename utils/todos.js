@@ -22,3 +22,17 @@ const fs = require('fs');
  exports.generateRandomId = () => {
     return Math.floor(Math.random()*1000);
  };
+
+ exports.getCompletedTodos = (callback) => {
+   this.getTodos((todos) => {
+      const filteredTodos = todos.filter((t) => t.completed === true);
+      callback(filteredTodos.length);
+   });
+ };
+
+ exports.getReminingTodos = (callback) => {
+   this.getTodos((todos) => {
+      const filteredTodos = todos.filter((t) => t.completed !== true);
+      callback(filteredTodos.length);
+   });
+};
