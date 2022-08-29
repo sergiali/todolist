@@ -4,7 +4,7 @@ const todoUtils = require('../utils/todos');
 
 exports.addTodo = (req,res) => {
     if(!req.body.todo) return res.redirect("/");
-    const todo = new Todo(todoUtils.generateRandomId,req.body.todo);
+    const todo = new Todo(todoUtils.generateRandomId(),req.body.todo);
     todo.save((err)=> {
         if(err) res.redirect("/");
         else console.log(err);
