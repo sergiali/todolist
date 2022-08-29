@@ -4,7 +4,7 @@ const fs = require('fs');
 
  const rootDir = require('./path');
 
- const filepath = path.join(rootDir,"/data","todos.json");
+ const filepath = path.join(rootDir,"data","todos.json");
 
  exports.getTodos = (callback) => {
     fs.readFile(filepath,(err,fileContent) =>{
@@ -20,5 +20,5 @@ const fs = require('fs');
  };
 
  exports.generateRandomId = () => {
-    Math.floor(Math.random*1000);
+    return Math.floor(Math.random()*1000);
  };
