@@ -12,7 +12,7 @@ exports.addTodo = async (req,res) => {
 
 exports.deleteTodo = async (req,res) => {
     try {
-        await Todo.destroy({where : { id : req.params.id }});
+        await Todo.findByIdAndRemove(req.params.id );
         res.redirect("/");
     } catch (err) {
         console.log(err);
@@ -21,7 +21,7 @@ exports.deleteTodo = async (req,res) => {
 
 exports.completedTodo = async (req,res) => {
     try {
-        const todo = await Todo.findByPk(req.params.id);
+        const todo = await Todo.findById(req.params.id);
         todo.completed = true;
         await todo.save();
         res.redirect("/");
