@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require('../utils/database');
 
-const todo = sequelize.define("Todo", {
+const Todo = sequelize.define("Todo", {
     //? Model Attributes
     id: {
         type : DataTypes.INTEGER,
@@ -70,4 +70,4 @@ const todo = sequelize.define("Todo", {
 //   };
 // };
 
-// module.exports=Todo;
+module.exports=Todo;
