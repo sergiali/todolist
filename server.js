@@ -1,10 +1,11 @@
-const path = require('path');
-
 const express = require('express');
 const bodyparser = require('body-parser');
 
+//* Connection To Database
+require('./utils/database');
+//* End Of Connection 
+
 const {setStatics} = require('./utils/statics');
-const sequelize = require('./utils/database');
 const adminRoutes = require("./routes/admin");
 const indexRoutes = require("./routes/index");
 const errorController = require('./controllers/error');
@@ -33,10 +34,4 @@ app.use("/admin",adminRoutes);
 app.use(errorController.get404);
 
 
-sequelize
-.sync()
-.then((result) => {
-    console.log(result);
-    app.listen(3000,() => console.log(`sever is running !`));
-})
-.catch((err) => console.log(err));
+app.listen(3000,() => console.log(`sever is running !`));
